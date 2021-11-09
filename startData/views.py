@@ -16,7 +16,10 @@ def checkID(request):
     # id가 존재하면 다음 페이지로 넘어감
     
     flag = False
-    df = pd.read_csv('../user_profile.csv', encoding='UTF-8')
+    try:
+        df = pd.read_csv('../user_profile.csv', encoding='UTF-8')
+    except FileNotFoundError:
+        df = pd.read_csv('user_profile.csv', encoding='UTF-8')
     for index, row in df.iterrows():
         if str(row['user_id']) == get_user_id:
             flag = True
