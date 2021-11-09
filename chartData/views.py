@@ -27,7 +27,7 @@ def checkData(request):
 def activeData():
     global zList
     zList = [[0] * 12 for row in range(32)]
-    df = pd.read_csv('hs_g73_m08/hs_' + user_id + '_m08_0903_1355.csv', encoding='ANSI')
+    df = pd.read_csv('hs_g73_m08/hs_' + user_id + '_m08_0903_1355.csv', encoding='UTF-8')
     for index, row in df.iterrows():
         dateNum = int(row['Time'][9:11])
         timeNum = int(int(row['Time'][12:14]) / 2)
@@ -93,7 +93,7 @@ def exerciseData():
     global actNumWeek, actNumMonth, actGraph
     actNumWeek = [0, 0, 0, 0, 0]
     
-    df = pd.read_csv('hs_g73_m08/hs_' + user_id + '_m08_0903_1355.csv', encoding='ANSI')
+    df = pd.read_csv('hs_g73_m08/hs_' + user_id + '_m08_0903_1355.csv', encoding='UTF-8')
     for index, row in df.iterrows():
         if (row['State'] == '실외운동하기') or (row['State'] == '실내운동하기'):
             if int(row['Time'][9:11]) <= 7:
@@ -128,7 +128,7 @@ def regularData():
     # 만약 '약', '용변' 횟수가 0회라면 아예 분석 x => 규칙성 점수 0점 처리
     
     # csv 파일 dataframe 객체로 읽어오기
-    df = pd.read_csv('hs_g73_m08/hs_' + user_id + '_m08_0903_1355.csv', encoding='ANSI')
+    df = pd.read_csv('hs_g73_m08/hs_' + user_id + '_m08_0903_1355.csv', encoding='UTF-8')
     toilet_times = []
     toilet_times_sec = []
 
@@ -197,7 +197,7 @@ def sleepData():
     global sleepList
     sleepList = [0 for i in range(32)]
     
-    df = pd.read_csv('hs_g73_m08/hs_' + user_id + '_m08_0903_1355.csv', encoding='ANSI')
+    df = pd.read_csv('hs_g73_m08/hs_' + user_id + '_m08_0903_1355.csv', encoding='UTF-8')
     for index, row in df.iterrows():
         if row['Act'] == '취침':
             dateNum = int(row['Time'][9:11])
@@ -255,7 +255,7 @@ def mealData():
     global mealList
     mealList= [[0] * 9 for row in range(32)]
     
-    df = pd.read_csv('hs_g73_m08/hs_' + user_id + '_m08_0903_1355.csv', encoding='ANSI')
+    df = pd.read_csv('hs_g73_m08/hs_' + user_id + '_m08_0903_1355.csv', encoding='UTF-8')
     for index, row in df.iterrows():
         dateNum = int(row['Time'][9:11])
         if row['State'] == '조식':
@@ -354,7 +354,7 @@ def sooniData():
     # 한 달 간 순이 대화 횟수 list
     sooniList = [0 for i in range(32)]
     text = ''
-    df = pd.read_csv('hs_g73_m08/hs_' + user_id + '_m08_0903_1355.csv', encoding='ANSI')
+    df = pd.read_csv('hs_g73_m08/hs_' + user_id + '_m08_0903_1355.csv', encoding='UTF-8')
     for index, row in df.iterrows():
         if row['Message_1'] != "" or row['Message_2'] != "" or row['Message_3'] != "":
             dateNum = int(row['Time'][9:11])
